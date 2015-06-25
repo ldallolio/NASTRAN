@@ -12,7 +12,7 @@ MOD = cr
 
 # Objects
 
-OBJS += a42a8.o
+OBJS += a42a8.o a82int.o
 
 # Default target
 

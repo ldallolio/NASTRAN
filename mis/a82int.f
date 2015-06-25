@@ -1,4 +1,4 @@
-      SUBROUTINE A8 2 INT (*,A,N,B,INT)
+      SUBROUTINE A82INT (*,A,N,B,INT)
 C
       CHARACTER*8     C
       REAL            A(2)
@@ -8,21 +8,21 @@ C     THESE ROUTINES PERFORM IN THE OPPOSITE DIRECTION AS THOSE OF THE
 C     INT2A8 GROUP OF ROUTINES
 C     THIS ROUTINE IS MACHINE INDEPENDENT
 C
-C     ENTRY POINTS   A8 2 INT  (BCD-INTEGER VERSION)
-C                    K8 2 INT  (CHARACTER-INTEGER VERSION)
-C                    A8 2 FP   (BCD-REAL VERSION)
-C                    K8 2 FP   (CHARACTER-REAL VERSION)
+C     ENTRY POINTS   A82INT  (BCD-INTEGER VERSION)
+C                    K82INT  (CHARACTER-INTEGER VERSION)
+C                    A82FP   (BCD-REAL VERSION)
+C                    K82FP   (CHARACTER-REAL VERSION)
 C
       NT = +1
       GO TO 20
 C
-      ENTRY K8 2 INT (*,C,N,B,INT)
+      ENTRY K82INT (*,C,N,B,INT)
 C     ****************************
 C
       NT = +1
       GO TO 30
 C
-      ENTRY A8 2 FP (*,A,N,B,INT)
+      ENTRY A82FP (*,A,N,B,INT)
 C     ***************************
 C
       NT = -1
@@ -32,7 +32,7 @@ C
       CALL NA12IF (*80,A,N,B,INT)
       RETURN
 C
-      ENTRY K8 2 FP (*,C,N,B,INT)
+      ENTRY K82FP (*,C,N,B,INT)
 C     ***************************
 C
       NT = -1
