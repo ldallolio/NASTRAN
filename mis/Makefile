@@ -12,18 +12,22 @@ MOD = cr
 
 # Objects
 
-OBJS = $(patsubst %.f,%.o,$(wildcard *.f))
+SRCF = $(wildcard *.f)
+OBJS = $(patsubst %.f,%.o,$(SRCF))
 
 # Default target
 
 default:	libnastran.a
 
-all:	libnastran.a
+all:	TAGS libnastran.a
 
 # Specific targets
 
 libnastran.a:	$(OBJS)
 	$(AR) $(MOD) $@ $(OBJS)
+
+TAGS:	$(SRCF)
+	etags $(SRCF)
 
 # Template rules
 

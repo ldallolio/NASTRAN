@@ -42,7 +42,8 @@ C
    50 WRITE  (NOUT,60)
    60 FORMAT (1H )
 C
-      IF (MACH.EQ.4 .AND. NOSBE.GT.0) CALL LINK (-1,NOSBE,1)
+      IF (MACH.EQ.4 .AND. NOSBE.GT.0)
+     &     STOP 'CALL LINK (-1,NOSBE,1)'
       GO TO 90
 C
    70 J = 5

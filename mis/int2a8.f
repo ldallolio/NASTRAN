@@ -1,4 +1,4 @@
-      SUBROUTINE INT 2 A8 (*,X,A8)
+      SUBROUTINE INT2A8 (*,X,A8)
 C
       INTEGER         JX,       POWER,    A8(2)
       REAL            RX,       X(1)
