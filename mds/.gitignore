@@ -1,0 +1,9 @@
+# Ignore the object files
+*.o
+
+# Ignore the executables
+nastran
+nasthelp
+nastplot
+fixed-field
+check-fill
