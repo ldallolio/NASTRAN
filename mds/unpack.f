@@ -44,48 +44,33 @@ C     INTEGER          IDUM2(2)
       DATA             BUFLGX    , TWO121    , DZERO     , DEBUG     /
      1                 0         , 4095      , 0.0D+0    , .FALSE.   /
 C VAX:
-      DATA             RECHDR    , MTXHDR    , LASTCW    , EQF       /
-     1                'F1111000'X,'F2222000'X,'F5555000'X,'F7777000'X/
-      DATA             SHEAD     , STRAIL    , DUMSTR    , LSTSTR    /
-     1                'F8888000'X,'F9999000'X,'FAAAA000'X,'FBBBB000'X/
-      DATA             MASK1     , MASK2     , MASK5     , MASK7     /
-     1                '00001111'X,'00002222'X,'00005555'X,'00007777'X/
-      DATA             MASK8     , MASKA     , MASKB     , MASKF     /
-     1                '00008888'X,'0000AAAA'X,'0000BBBB'X,'0000FFFF'X/
-      DATA             MASK2F    , MASK3F    , MASK6F    , CHEAD     /
-     1                'FF000000'X,'00000FFF'X,'00FFFFFF'X,'40000000'X/
-      DATA             CTRAIL    /
-     1                '80000000'X/
-C UNIX:
 C     DATA             RECHDR    , MTXHDR    , LASTCW    , EQF       /
-C    1                X'F1111000',X'F2222000',X'F5555000',X'F7777000'/
+C    1                'F1111000'X,'F2222000'X,'F5555000'X,'F7777000'X/
 C     DATA             SHEAD     , STRAIL    , DUMSTR    , LSTSTR    /
-C    1                X'F8888000',X'F9999000',X'FAAAA000',X'FBBBB000'/
+C    1                'F8888000'X,'F9999000'X,'FAAAA000'X,'FBBBB000'X/
 C     DATA             MASK1     , MASK2     , MASK5     , MASK7     /
-C    1                X'00001111',X'00002222',X'00005555',X'00007777'/
+C    1                '00001111'X,'00002222'X,'00005555'X,'00007777'X/
 C     DATA             MASK8     , MASKA     , MASKB     , MASKF     /
-C    1                X'00008888',X'0000AAAA',X'0000BBBB',X'0000FFFF'/
+C    1                '00008888'X,'0000AAAA'X,'0000BBBB'X,'0000FFFF'X/
 C     DATA             MASK2F    , MASK3F    , MASK6F    , CHEAD     /
-C    1                X'FF000000',X'00000FFF',X'00FFFFFF',X'40000000'/
+C    1                'FF000000'X,'00000FFF'X,'00FFFFFF'X,'40000000'X/
 C     DATA             CTRAIL    /
-C    1                X'80000000'/
+C    1                '80000000'X/
+C UNIX:
+      DATA             RECHDR    , MTXHDR    , LASTCW    , EQF       /
+     1                X'F1111000',X'F2222000',X'F5555000',X'F7777000'/
+      DATA             SHEAD     , STRAIL    , DUMSTR    , LSTSTR    /
+     1                X'F8888000',X'F9999000',X'FAAAA000',X'FBBBB000'/
+      DATA             MASK1     , MASK2     , MASK5     , MASK7     /
+     1                X'00001111',X'00002222',X'00005555',X'00007777'/
+      DATA             MASK8     , MASKA     , MASKB     , MASKF     /
+     1                X'00008888',X'0000AAAA',X'0000BBBB',X'0000FFFF'/
+      DATA             MASK2F    , MASK3F    , MASK6F    , CHEAD     /
+     1                X'FF000000',X'00000FFF',X'00FFFFFF',X'40000000'/
+      DATA             CTRAIL    /
+     1                X'80000000'/
 C
 C     MASKF = '0000FFFF'X (OR X'0000FFFF') = 65535
-C
-C*****
-      ANDF(I,J)   = IAND(I,J)
-      ORF (I,J)   = IOR (I,J)
-      LSHIFT(I,J) = ISHFT(I, J)
-      RSHIFT(I,J) = ISHFT(I,-J)
-C     WHERE         ISHFT(I,+J) IS  LEFT-SHIFT I BY J BITS, ZERO FILL
-C                   ISHFT(I,-J) IS RIGHT-SHIFT I BY J BITS, ZERO FILL
-C     AND           ISHFT IS SYSTEM ROUTINE
-C
-C UNIX:
-C     REMOVE ABOVE 4 ON-LINE FUNCTIONS IF IAND, IOR AND ISHFT SYSTEM
-C     FUNCTIONS ARE NOT AVAILABLE. ANDF, ORF AND L/RSHIFT ARE ALREADY
-C     ENTRY POINTS IN SUBROUTINE MAPFNS.
-C*****
 C
 C     LOCFX1 = LOCFX(CORE(1))
 C

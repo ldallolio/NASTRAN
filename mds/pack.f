@@ -59,38 +59,23 @@ C
       DATA             CLR0      , BLANK     , DEBUG     , ERRCNT    /
      1                 9         , 4H        , .FALSE.   , 0         /
 C VAX:
-      DATA             RECHDR    , MTXHDR    , LASTCW    , EQF       /
-     1                'F1111000'X,'F2222000'X,'F5555000'X,'F7777000'X/
-      DATA             SHEAD     , STRAIL    , DUMSTR    , LSTSTR    /
-     1                'F8888000'X,'F9999000'X,'FAAAA000'X,'FBBBB000'X/
-      DATA             CHEAD     , CTRAIL    , MASK2F    , MASKF     /
-     1                '40000000'X,'80000000'X,'FF000000'X,'FF00FFFF'X/
-      DATA             MASK6F    , MASK1     , MASK2     , MASK3     /
-     1                '00FFFFFF'X,'10000000'X,'20000000'X,'30000000'X/
-C UNIX:
 C     DATA             RECHDR    , MTXHDR    , LASTCW    , EQF       /
-C    1                X'F1111000',X'F2222000',X'F5555000',X'F7777000'/
+C    1                'F1111000'X,'F2222000'X,'F5555000'X,'F7777000'X/
 C     DATA             SHEAD     , STRAIL    , DUMSTR    , LSTSTR    /
-C    1                X'F8888000',X'F9999000',X'FAAAA000',X'FBBBB000'/
+C    1                'F8888000'X,'F9999000'X,'FAAAA000'X,'FBBBB000'X/
 C     DATA             CHEAD     , CTRAIL    , MASK2F    , MASKF     /
-C    1                X'40000000',X'80000000',X'FF000000',X'FF00FFFF'/
+C    1                '40000000'X,'80000000'X,'FF000000'X,'FF00FFFF'X/
 C     DATA             MASK6F    , MASK1     , MASK2     , MASK3     /
-C    1                X'00FFFFFF',X'10000000',X'20000000',X'30000000'/
-C
-C*****
-      ANDF(I,J)   = IAND(I,J)
-      ORF (I,J)   = IOR (I,J)
-      LSHIFT(I,J) = ISHFT(I, J)
-      RSHIFT(I,J) = ISHFT(I,-J)
-C     WHERE         ISHFT(I,+J) IS  LEFT-SHIFT I BY J BITS, ZERO FILL
-C                   ISHFT(I,-J) IS RIGHT-SHIFT I BY J BITS, ZERO FILL
-C     AND           ISHFT IS SYSTEM ROUTINE
-C
+C    1                '00FFFFFF'X,'10000000'X,'20000000'X,'30000000'X/
 C UNIX:
-C     REMOVE ABOVE 4 ON-LINE FUNCTIONS IF IAND, IOR AND ISHFT SYSTEM
-C     FUNCTIONS ARE NOT AVAILABLE. ANDF, ORF AND L/RSHIFT ARE ALREADY
-C     ENTRY POINTS IN SUBROUTINE MAPFNS.
-C*****
+      DATA             RECHDR    , MTXHDR    , LASTCW    , EQF       /
+     1                X'F1111000',X'F2222000',X'F5555000',X'F7777000'/
+      DATA             SHEAD     , STRAIL    , DUMSTR    , LSTSTR    /
+     1                X'F8888000',X'F9999000',X'FAAAA000',X'FBBBB000'/
+      DATA             CHEAD     , CTRAIL    , MASK2F    , MASKF     /
+     1                X'40000000',X'80000000',X'FF000000',X'FF00FFFF'/
+      DATA             MASK6F    , MASK1     , MASK2     , MASK3     /
+     1                X'00FFFFFF',X'10000000',X'20000000',X'30000000'/
 C
 C     IF (TYPOUT .EQ. TYPIN) GO TO 5
 C     IF (TYPOUT .LT. 0) CALL ERRTRC (0)

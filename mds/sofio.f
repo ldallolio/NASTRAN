@@ -33,12 +33,10 @@ C
 C                     MOD(LQRO,100)/10 IS BYTE OR WORD COUNT
 C
       OPEN (UNIT   = NUNITS(I),
-CWKBI
      1      FILE   = SDSN(I),
      1      STATUS = 'UNKNOWN',
      2      FORM   = 'UNFORMATTED',
      3      ACCESS = 'DIRECT',
-     4      MAXREC = FILSIZ(I),
      5      RECL   = IBKSZ)
 C    6      RECORDTYPE = 'FIXED',
 C    7      BLOCKSIZE  = IBKSZ,

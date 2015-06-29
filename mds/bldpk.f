@@ -51,27 +51,27 @@ C    1                 6, 3, 3, 2 /
       DATA             TWO12     , TWO121    , DEBUG                  /
      1                 4096      , 4095      , .FALSE.                /
 C VAX:
-      DATA             RECHDR    , MTXHDR    , LASTCW    , EQF        /
-     1                'F1111000'X,'F2222000'X,'F5555000'X,'F7777000'X /
-      DATA             SHEAD     , STRAIL    , DUMSTR    , LSTSTR     /
-     1                'F8888000'X,'F9999000'X,'FAAAA000'X,'FBBBB000'X /
-      DATA             CHEAD     , CTRAIL    , MASKA     , MASKB      /
-     1                '40000000'X,'80000000'X,'FF000000'X,'FF00FFFF'X /
-      DATA             MASK1     , MASK2     , MASK3     , MASK4      /
-     1                '10000000'X,'20000000'X,'30000000'X,'04000000'X /
-      DATA             MASKF     /
-     1                '00FFFFFF'X/
-C UNIX:
 C     DATA             RECHDR    , MTXHDR    , LASTCW    , EQF        /
-C    1                X'F1111000',X'F2222000',X'F5555000',X'F7777000' /
+C    1                'F1111000'X,'F2222000'X,'F5555000'X,'F7777000'X /
 C     DATA             SHEAD     , STRAIL    , DUMSTR    , LSTSTR     /
-C    1                X'F8888000',X'F9999000',X'FAAAA000',X'FBBBB000' /
+C    1                'F8888000'X,'F9999000'X,'FAAAA000'X,'FBBBB000'X /
 C     DATA             CHEAD     , CTRAIL    , MASKA     , MASKB      /
-C    1                X'40000000',X'80000000',X'FF000000',X'FF00FFFF' /
+C    1                '40000000'X,'80000000'X,'FF000000'X,'FF00FFFF'X /
 C     DATA             MASK1     , MASK2     , MASK3     , MASK4      /
-C    1                X'10000000',X'20000000',X'30000000',X'04000000' /
+C    1                '10000000'X,'20000000'X,'30000000'X,'04000000'X /
 C     DATA             MASKF     /
-C    1                X'00FFFFFF'/
+C    1                '00FFFFFF'X/
+C UNIX:
+      DATA             RECHDR    , MTXHDR    , LASTCW    , EQF        /
+     1                X'F1111000',X'F2222000',X'F5555000',X'F7777000' /
+      DATA             SHEAD     , STRAIL    , DUMSTR    , LSTSTR     /
+     1                X'F8888000',X'F9999000',X'FAAAA000',X'FBBBB000' /
+      DATA             CHEAD     , CTRAIL    , MASKA     , MASKB      /
+     1                X'40000000',X'80000000',X'FF000000',X'FF00FFFF' /
+      DATA             MASK1     , MASK2     , MASK3     , MASK4      /
+     1                X'10000000',X'20000000',X'30000000',X'04000000' /
+      DATA             MASKF     /
+     1                X'00FFFFFF'/
 C
 C     1. BNAME  = GINO REF NAME
 C     2. BTYPE  = TYPE OF STRINGS (1=RSP, 2=RDP, 3=CSP, 4=CDP)
@@ -96,20 +96,6 @@ C                 6 FOR S.P.REAL, 3 FOR D.P.REAL AND S.P.COMPLEX, AND
 C                 2 FOR D.P.COMPLEX
 C        NWPCK  = 1,2,2,OR 4 (DEPENDS ON BTYPE)
 C
-C*****
-      ANDF(I,J)   = IAND(I,J)
-      ORF (I,J)   = IOR (I,J)
-      LSHIFT(I,J) = ISHFT(I, J)
-      RSHIFT(I,J) = ISHFT(I,-J)
-C     WHERE         ISHFT(I,+J) IS  LEFT-SHIFT I BY J BITS, ZERO FILL
-C                   ISHFT(I,-J) IS RIGHT-SHIFT I BY J BITS, ZERO FILL
-C     AND           ISHFT IS SYSTEM ROUTINE
-C
-C UNIX:
-C     REMOVE ABOVE 4 ON-LINE FUNCTIONS IF IAND, IOR AND ISHFT SYSTEM
-C     FUNCTIONS ARE NOT AVAILABLE. ANDF, ORF AND L/RSHIFT ARE ALREADY
-C     ENTRY POINTS IN SUBROUTINE MAPFNS.
-C*****
       JFLAG  = FLAG
       BFORM  = 0
       IF (FLAG .LT. 0) BFORM = 1

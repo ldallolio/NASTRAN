@@ -56,35 +56,35 @@ C              CLOSE:     1          2         3
       DATA          KOC        ,  KOCL      ,  SUB       ,  LOGFL      /
      1              0          ,  1000000   ,  4HGINO,1H ,  4          /
 C VAX:
-      DATA          RECHDR     ,  MTXHDR    ,  LASTCW    ,  EQF        /
-     1              'F1111000'X, 'F2222000'X, 'F5555000'X, 'F7777000'X /
-      DATA          SHEAD      ,  STRAIL    ,  DUMSTR    ,  LSTSTR     /
-     1              'F8888000'X, 'F9999000'X, 'FAAAA000'X, 'FBBBB000'X /
-      DATA          CHEAD      ,  CTRAIL    ,  MASK1F    ,  MASK2F     /
-     1              '40000000'X, '80000000'X, '0000000F'X, 'FF000000'X /
-      DATA          MASK3F     ,  MASK4F    ,  MASK6F    ,  MASK01     /
-     1              '00000FFF'X, '0000FFFF'X, '00FFFFFF'X, '00000001'X /
-      DATA          MASK10     ,  MASK20    ,  MASK30    ,  MASK77     /
-     1              '10000000'X, '20000000'X, '30000000'X, '77777777'X /
-      DATA          MASK1      ,  MASK2     ,  MASK5     ,  MASK7      /
-     1              '00001111'X, '00002222'X, '00005555'X, '00007777'X /
-      DATA          MASK8      ,  MASK9     ,  MASKA     ,  MASKB      /
-     1              '00008888'X, '00009999'X, '0000AAAA'X, '0000BBBB'X /
-C UNIX:
 C     DATA          RECHDR     ,  MTXHDR    ,  LASTCW    ,  EQF        /
-C    1              X'F1111000', X'F2222000', X'F5555000', X'F7777000' /
+C    1              'F1111000'X, 'F2222000'X, 'F5555000'X, 'F7777000'X /
 C     DATA          SHEAD      ,  STRAIL    ,  DUMSTR    ,  LSTSTR     /
-C    1              X'F8888000', X'F9999000', X'FAAAA000', X'FBBBB000' /
+C    1              'F8888000'X, 'F9999000'X, 'FAAAA000'X, 'FBBBB000'X /
 C     DATA          CHEAD      ,  CTRAIL    ,  MASK1F    ,  MASK2F     /
-C    1              X'40000000', X'80000000', X'0000000F', X'FF000000' /
+C    1              '40000000'X, '80000000'X, '0000000F'X, 'FF000000'X /
 C     DATA          MASK3F     ,  MASK4F    ,  MASK6F    ,  MASK01     /
-C    1              X'00000FFF', X'0000FFFF', X'00FFFFFF', X'00000001' /
+C    1              '00000FFF'X, '0000FFFF'X, '00FFFFFF'X, '00000001'X /
 C     DATA          MASK10     ,  MASK20    ,  MASK30    ,  MASK77     /
-C    1              X'10000000', X'20000000', X'30000000', X'77777777' /
+C    1              '10000000'X, '20000000'X, '30000000'X, '77777777'X /
 C     DATA          MASK1      ,  MASK2     ,  MASK5     ,  MASK7      /
-C    1              X'00001111', X'00002222', X'00005555', X'00007777' /
+C    1              '00001111'X, '00002222'X, '00005555'X, '00007777'X /
 C     DATA          MASK8      ,  MASK9     ,  MASKA     ,  MASKB      /
-C    1              X'00008888', X'00009999', X'0000AAAA', X'0000BBBB' /
+C    1              '00008888'X, '00009999'X, '0000AAAA'X, '0000BBBB'X /
+C UNIX:
+      DATA          RECHDR     ,  MTXHDR    ,  LASTCW    ,  EQF        /
+     1              X'F1111000', X'F2222000', X'F5555000', X'F7777000' /
+      DATA          SHEAD      ,  STRAIL    ,  DUMSTR    ,  LSTSTR     /
+     1              X'F8888000', X'F9999000', X'FAAAA000', X'FBBBB000' /
+      DATA          CHEAD      ,  CTRAIL    ,  MASK1F    ,  MASK2F     /
+     1              X'40000000', X'80000000', X'0000000F', X'FF000000' /
+      DATA          MASK3F     ,  MASK4F    ,  MASK6F    ,  MASK01     /
+     1              X'00000FFF', X'0000FFFF', X'00FFFFFF', X'00000001' /
+      DATA          MASK10     ,  MASK20    ,  MASK30    ,  MASK77     /
+     1              X'10000000', X'20000000', X'30000000', X'77777777' /
+      DATA          MASK1      ,  MASK2     ,  MASK5     ,  MASK7      /
+     1              X'00001111', X'00002222', X'00005555', X'00007777' /
+      DATA          MASK8      ,  MASK9     ,  MASKA     ,  MASKB      /
+     1              X'00008888', X'00009999', X'0000AAAA', X'0000BBBB' /
 C
 C     MASK4F = '0000FFFF'X (OR X'0000FFFF') = 65535
 C
@@ -330,8 +330,6 @@ C     FOR GINO DEFINITION WORDS
 C
       ANDF(I,J)   = IAND(I,J)
       ORF (I,J)   = IOR (I,J)
-C
-CUNIX: REPLACE ABOVE 'IAND' AND 'IOR' BY 'AND' AND 'OR' SYSTEM FUNCTIONS
 C
 C
 C     FOLLOWING STATEMENTS INITIALIZE BUFFER CHECKING ROUTINE

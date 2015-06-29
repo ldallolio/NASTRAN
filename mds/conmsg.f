@@ -6,7 +6,7 @@ C
       INTEGER CPUTIM, CPUSTR
       INTEGER WALLTM, WALSTR
 C
-      DIMENSION MESAGE(1), ITIME(2)
+      DIMENSION MESAGE(1)
 C
       COMMON /SYSTEM/ ISYSTM(100)
 C
@@ -14,10 +14,14 @@ C
      *            (ISYSTM(18), CPUSTR),
      *            (ISYSTM(32), WALSTR)
 C
+      character*8 date
+      character*10 time
+      character*5 zone
+      integer values(8)
 C
 C     GET THE CURRENT TIME
 C
-      CALL TIME (ITIME)
+      call date_and_time(date, time, zone, values)
 C
 C     GET THE WALL CLOCK TIME ELAPSED SINCE THE START OF JOB
 C
@@ -31,7 +35,7 @@ C
       CPUSEC = CPUTIM - CPUSTR
 C
       MWORDS = MIN0 (NWORDS, 15)
-      WRITE (4, 2000) ITIME, WALSEC, CPUSEC, (MESAGE(I), I = 1, MWORDS)
+      WRITE (4, 2000) date, WALSEC, CPUSEC, (MESAGE(I), I = 1, MWORDS)
       RETURN
  2000 FORMAT (1X, 2A4, F9.1, 12H ELAPSED SEC, F10.1, 8H CPU SEC,
      1        3X, A4,  2X, 2A4, 2X, 12A4)

@@ -12,32 +12,19 @@ C
       DATA             NOUT    ,  NAM      , IIBL      /
      1                 6       ,  'BUFCHK@','II,B(L)=' /
 C VAX:
-      DATA             RECTRL  ,  RCTRLL   , RCTRLC  , COLHDR, COLTRL /
-     1                 '1'X    ,  '2'X     , '3'X    , '4'X  , '8'X   /
-      DATA             RECHDR  ,  RCHDST   , STRDUM  , EOBSTR   /
-     1                 'F1111'X,  'F2222'X , 'FAAAA'X, 'FBBBB'X /
-      DATA             EOB     ,  EOF      , STRHDR  , STRTRL   /
-     1                 'F5555'X,  'F7777'X , 'F8888'X, 'F9999'X /
-C UNIX:
 C     DATA             RECTRL  ,  RCTRLL   , RCTRLC  , COLHDR, COLTRL /
-C    1                 X'1'    ,  X'2'     , X'3'    , X'4'  , X'8'   /
+C    1                 '1'X    ,  '2'X     , '3'X    , '4'X  , '8'X   /
 C     DATA             RECHDR  ,  RCHDST   , STRDUM  , EOBSTR   /
-C    1                 X'F1111',  X'F2222' , X'FAAAA', X'FBBBB' /
+C    1                 'F1111'X,  'F2222'X , 'FAAAA'X, 'FBBBB'X /
 C     DATA             EOB     ,  EOF      , STRHDR  , STRTRL   /
-C    1                 X'F5555',  X'F7777' , X'F8888', X'F9999' /
-C
-C*****
-      LSHIFT(K,J) = ISHFT(K, J)
-      RSHIFT(K,J) = ISHFT(K,-J)
-C     WHERE         ISHFT(K,+J) IS  LEFT-SHIFT K BY J BITS, ZERO FILL
-C                   ISHFT(K,-J) IS RIGHT-SHIFT K BY J BITS, ZERO FILL
-C     AND           ISHFT IS SYSTEM ROUTINE
-C
+C    1                 'F5555'X,  'F7777'X , 'F8888'X, 'F9999'X /
 C UNIX:
-C     REMOVE ABOVE 2 ON-LINE FUNCTIONS IF THE SYSTEM ISHFT FUNCTION IS
-C     NOT AVAILABLE.  LSHIFT AND RSHIFT ARE ALREADY ENTRY POINTS IN
-C     SUBROUTINE MAPFNS.
-C*****
+      DATA             RECTRL  ,  RCTRLL   , RCTRLC  , COLHDR, COLTRL /
+     1                 X'1'    ,  X'2'     , X'3'    , X'4'  , X'8'   /
+      DATA             RECHDR  ,  RCHDST   , STRDUM  , EOBSTR   /
+     1                 X'F1111',  X'F2222' , X'FAAAA', X'FBBBB' /
+      DATA             EOB     ,  EOF      , STRHDR  , STRTRL   /
+     1                 X'F5555',  X'F7777' , X'F8888', X'F9999' /
 C
       L      = OFFSET - 1
       DATBGN = L + 1
