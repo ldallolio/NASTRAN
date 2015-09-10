@@ -28,7 +28,7 @@ C
       ENTRY LOCFX (I)
 C     ===============
       K = LQRO/1000
-      LOCFX = %LOC(I)/K
+      LOCFX = LOC(I)/K
       RETURN
 C
       ENTRY LSHIFT (I,J)

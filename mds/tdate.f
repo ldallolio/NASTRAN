@@ -9,7 +9,16 @@ C     THIS ROUTINE OBTAINS THE MONTH, DAY AND YEAR, IN INTEGER FORMAT
 C
       INTEGER DATE(3)
 C
-      CALL IDATE (DATE(1),DATE(2),DATE(3))
-C                 MONTH   DAY     YEAR
+      character*8 chdate
+      character*10 time
+      character*5 zone
+      integer values(8)
+C
+      call date_and_time(chdate, time, zone, values)
+C
+      date(1) = values(2)        ! Month
+      date(2) = values(3)        ! Day
+      date(3) = values(1)        ! Year
+C
       RETURN
       END

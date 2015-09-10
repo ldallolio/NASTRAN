@@ -122,10 +122,8 @@ C     IF (MACH .EQ IBM) CALL FILEDEF (PTAPE,RECFM,FB(MA))
      2      FORM   = 'FORMATTED',
      3      ACCESS = 'SEQUENTIAL',
      4      IOSTAT = J,
-     5      CARRIAGECONTROL = NONE
-     6      ,RECL  = IRECSZ)
-C            RECL IS NEEDED BY VAX, AND POSSIBLY OTHER MACHINES)
-C    6      )
+     6      RECL  = IRECSZ)
+C
       IF (J .NE. 0) GO TO 60
  30   READ   (PTAPE,40,END=50) J
  40   FORMAT (A1)
@@ -138,10 +136,8 @@ C
      2      FORM   = 'FORMATTED',
      3      ACCESS = 'SEQUENTIAL',
      4      IOSTAT = J,
-     5      CARRIAGECONTROL = NONE
-     6      ,RECL  = IRECSZ)
-C            RECL IS NEEDED BY VAX, AND POSSIBLY OTHER MACHINES)
-C    6      )
+     6      RECL  = IRECSZ)
+C
       IF (J .EQ. 0) GO TO 80
       WRITE  (NOUT,70) PLTX,PTAPE
  70   FORMAT ('0*** SYSTEM FATAL ERROR. SGINO CAN NOT OPEN ',A4,
