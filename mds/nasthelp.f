@@ -19,7 +19,7 @@ C       7. ERROR MESSAGES                                MSSG.TXT
 C       8. NASTRAN DICTIONARY                            DICT.TXT
 C       9. INTRODUCTION & GENERAL INFORMATION            INTR.TXT
 C      10. USER'S MASTER FILE AND USER GENERATED INPUT   UMFL.TXT
-C          (RIGID FORMATS NOT INCLUDED)
+C      11. RIGID FORMATS                                 RFMT.TXT
 C
 C
 C     IN ADDITION,
@@ -63,13 +63,13 @@ C     -----------  -------   ---------  --------------------------------
 C     COV.TAB          4      INPUT     CONTAINS MACHINE DEPENDENT ASCII
 C                           (OPTIONAL)  SPECIAL SYMBOL CONVERSION TABLE
 C     NASTRAN MANUAL   3      INPUT     EXEC,CASE,BULK,PLOT,SUBS,DMAP,
-C        .TXT FILES                     MSSG,DICT,INTR and UMFL.TXT
+C        .TXT FILES                     MSSG,DICT,INTR UMFL and RFMT.TXT
 C     SYSTEM I/O      5,6
 C     USER GIVEN       2      OUTPUT    OUTPUT PRINT FILE
 C      FILE NAME            (OPTIONAL)
 C
 C     FLAGS USED:
-C     FL    = 1  THRU 10 FOR 10 .TXT FILE
+C     FL    = 1  THRU 11 FOR 11 .TXT FILES
 C     SEC   = 1, MEANS SEACH BY SECTION ALLOWED, ZERO OTHERWISE
 C     HD12  = 0, NO HEADER LINE ON TEXT. OTHEREWISE,
 C                HD12(FL) IS THE APPROPIATE HEADER LINE FOR FILE FL
@@ -87,13 +87,13 @@ C     REVISED FOR NEW .TXT FILES FORMAT   4/1993
 C
       IMPLICIT INTEGER (A-Z)
       LOGICAL      CHECK,PRINT,FIRST,ETY,POPEN,DEBUG
-      INTEGER      IVAL(256),NUMSUB(256),NVAL(256,10),BASE(10)
+      INTEGER      IVAL(256),NUMSUB(256),NVAL(256,10),BASE(11)
       CHARACTER*1  KA,KB,KC,KD,KE,KF,KG,KH,KI,KJ,KK,KL,KM,KN,KO,KP,KQ,
      1             KR,KS,KT,KU,KV,KW,KX,KY,KZ,BNK1,LB1,UP1,LT1,MNS,PLUS,
      2             CMA,DOT,NUM,QM, LLa,LLz,
      3             LC,IC,JC,JX1,YES,NO, A1(80),A11,K1(8)
       CHARACTER*4  A4,KEY4,KEY42,BNK4,NEW4,STP4,WAS4,APPR,APP,SOLU,SOL,
-     1             NXTP,NXTS,NXTB,FILE,FILEX(10)
+     1             NXTP,NXTS,NXTB,FILE,FILEX(11)
       CHARACTER    PAG3*3,PAG6*6,KEY6*6,KEY8*8,FNAME*8,MACH*16,DATE9*9,
      1             A3*3,A6*6,A12*12,OU12*12,A48*48,B48*48,A79*79,A80*80,
      2             K44*44,KA44*44,HD6*6,HD12(6)*12,DBGO*8,DBGF*8,TCTF*35
@@ -104,8 +104,8 @@ C
      1             (A1(1),A11,A4,A3,A6,A12,A48,A79,A80,JX1),(A1(3),JC),
      2             (K1(1),KEY4,KEY6,KEY8),(KEY42,K1(5)),(A1(2),IC)
       DATA         IN,OUT,TB,OU / 5, 6, 4, 2  /, NLP,ETY / 22, .TRUE. /,
-C    1             BASE  / 23, 24, 17, 25, 6, 21, 0, 0, 0, 0          /,
-     1             BASE  /  0,  0,  0,  0, 0,  0, 0, 0, 0, 0          /,
+C    1             BASE  / 23, 24, 17, 25, 6, 21, 0, 0, 0, 0, 0       /,
+     1             BASE  /  0,  0,  0,  0, 0,  0, 0, 0, 0, 0, 0       /,
      2             J4,J5,J6, T1,       T2,    T3 , LLa, LLz, NEW4     /
      3             21,26,41, 16777216, 65536, 256, 'a', 'z', '|   '   /,
      4             K44 /'ABCDEFGHIJKLMNOPQRSTUVWXYZ #^<-+,.1234567890'/,
@@ -113,8 +113,8 @@ C    1             BASE  / 23, 24, 17, 25, 6, 21, 0, 0, 0, 0          /,
      6             NXTP,NXTS,NXTB,QM   / 'P  ', 'S   ','B   ', '?'    /,
      7             APPR,APP, SOLU,SOL  / 'APPR','APP ','SOLU','SOL '  /,
      8             FILEX / 'EXEC','CASE','BULK','PLOT','DMAP','SUBS'  ,
-     9             'MSSG','DICT','INTR','UMFL'/, FNAME  /'XXXX.TXT'   /,
-     O             MACH / 'VAX/VMS VERSION '  /,  DATE9 / 'APR. 1993' /,
+     9             'MSSG','DICT','INTR','UMFL','RFMT'/,FNAME/'XXXX.TXT'
+     O/,           MACH / 'VAX/VMS VERSION '  /,  DATE9 / 'APR. 1993' /,
      1             FIRST,CHECK,PRINT,DEBUG    / .TRUE.,  3*.FALSE.    /,
      2             LU,IVFF / 3, 12 /,     HD6 / 'Name: '/,   HD12     /
      3             'Executive Co', 'Case Control', 'Input Data C'     ,
@@ -193,7 +193,8 @@ C
      1        'Executive(E), Casecontrol(C), Bulkdata(B), Plotting(P)',
      2        ', Substructure(S),', /7X,'DMAP(D), Message(M), ',
      3        'Introduction/General(I), NASTRAN Dictionary(T),', /7X,
-     4        'UMF/UGI file(U), Unknow(?), or stop(STOP) ')
+     4        'UMF/UGI file(U), Rigid Formats(R), Unknow(?), or ',
+     5        'stop(STOP) ')
       READ (IN,170) LC,IC,JC
       IF (ICHAR(LC).GE.La .AND. ICHAR(LC).LE.Lz) LC = CHAR(ICHAR(LC)+Aa)
       IF (ICHAR(IC).GE.La .AND. ICHAR(IC).LE.Lz) IC = CHAR(ICHAR(IC)+Aa)
@@ -217,6 +218,7 @@ C
       IF (LC .EQ. KT) GO TO 380
       IF (LC .EQ. KI) GO TO 390
       IF (LC .EQ. KU) GO TO 400
+      IF (LC .EQ. KR) GO TO 405
       IF (LC .EQ. QM) GO TO 280
       WRITE  (OUT,270)
   270 FORMAT (/,' *** SELECTION error')
@@ -261,6 +263,8 @@ C
       GO TO  410
   400 FL   = 10
       GO TO  410
+  405 FL   = 11
+      GO TO  410
 C
   410 FILE = FILEX(FL)
       WAS1 = COMPLF(0)
@@ -271,7 +275,7 @@ C
       IF (CHECK) GO TO 1700
       IF (PRINT) GO TO 2000
       SOUNT = 0
-  420 GO TO (650,650,650,650,650,650,430,540,610,610), FL
+  420 GO TO (650,650,650,650,650,650,430,540,610,610,650), FL
 C
 C     MESSAGE SEARCH
 C
@@ -371,7 +375,7 @@ C
       IF (KEY8 .EQ. DBGO) DEBUG = .TRUE.
       IF (KEY8 .EQ. DBGF) DEBUG = .FALSE.
       IF (KEY8.EQ.DBGO .OR. KEY8.EQ.DBGF) GO TO 650
-      IF (FL .GE. 9) GO TO 610
+      IF (FL.EQ.9 .OR. FL.EQ.10) GO TO 610
   700 JDX = 9
       IF (SEC .EQ. 1) GO TO 900
       IF (K1(1).NE.KS .AND. K1(1).NE.KB) GO TO 900
@@ -535,7 +539,7 @@ C     *   HEADER WORDS WERE REMOVED IN 1993 USER'S MANUAL  *
           IF (J .EQ. 0) GO TO 1120
 C     ******************************************************
 C
-      GO TO (1010,1010,1010,1010,1030,1010,1100,1100,1100,1100), FL
+      GO TO (1010,1010,1010,1010,1030,1010,1100,1100,1100,1100,1050), FL
  1010 IF (DEBUG) WRITE (OUT,1020) A12,HD12(FL)
  1020 FORMAT (50X,A12,'==> ',A12)
       IF (A12 .EQ. HD12(FL)) GO TO 1050
@@ -618,7 +622,7 @@ C
  1300 FORMAT (1X,A79)
  1310 KOUNT = KOUNT + 1
       IF (MOD(KOUNT,NLP) .NE. 0) GO TO 1240
-      GO TO (1320,1320,1320,1320,1320,1320,420,420,1320,1320), FL
+      GO TO (1320,1320,1320,1320,1320,1320,420,420,1320,1320,1320), FL
  1320 IF (.NOT.FIRST) GO TO 1350
       FIRST = .FALSE.
  1330 WRITE (OUT,1340) NLP4,NLP,NLP4
@@ -701,9 +705,9 @@ C
       GO TO 240
 C
 C     INPUT TEXT FILE DATA CHECK FOR
-C     EXEC, CASE, BULK, PLOT, DMAP AND SUBS.TXT FILES)
+C     EXEC, CASE, BULK, PLOT, DMAP SUBS and RFMT.TXT FILES)
 C
- 1700 IF (FL .LE. 6) GO TO 1720
+ 1700 IF (FL.LE.6 .OR. FL.EQ.11) GO TO 1720
       WRITE  (OUT,1710) FILEX(FL)
  1710 FORMAT (//,' *** Data CHECK OPTION not valid for ',A4,'.TXT file')
       GO TO 240
