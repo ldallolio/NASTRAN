@@ -1,9 +1,8 @@
 
 # GNU Fortran
 
-F77 = gfortran
-FFLAGS += -std=legacy -fno-range-check
-FOPTS = -g
+FC = gfortran
+FFLAGS += -g -w -fno-range-check -fno-automatic -fcray-pointer
 
 # Objects
 
@@ -46,24 +45,24 @@ all:	nastran nasthelp nastplot fixed-field check-fill
 # Specific targets
 
 nastran:	nastrn.o $(OBJS)
-	$(F77) $(FOPTS) $(FFLAGS) -o $@ $< $(OBJS) $(LIBNASTRAN)
+	$(FC) $(FFLAGS) -o $@ $< $(OBJS) $(LIBNASTRAN)
 
 nasthelp:	nasthelp.o
-	$(F77) $(FOPTS) $(FFLAGS) -o $@ $<
+	$(FC) $(FFLAGS) -o $@ $<
 
 nastplot:	nastplot.o
-	$(F77) $(FOPTS) $(FFLAGS) -o $@ $<
+	$(FC) $(FFLAGS) -o $@ $<
 
 fixed-field:	ff.o
-	$(F77) $(FOPTS) $(FFLAGS) -o $@ $<
+	$(FC) $(FFLAGS) -o $@ $<
 
 check-fill:	chkfil.f
-	$(F77) $(FOPTS) $(FFLAGS) -o $@ $<
+	$(FC) $(FFLAGS) -o $@ $<
 
 # Template rules
 
 %.o:	%.f
-	$(F77) $(FOPTS) $(FFLAGS) -c -o $@ $<
+	$(FC) $(FFLAGS) -c -o $@ $<
 
 # Phony rules
 
