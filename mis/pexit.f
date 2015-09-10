@@ -1,5 +1,7 @@
       SUBROUTINE PEXIT
 C
+      external link
+C
       INTEGER         HH,SS,DATE(3)
       COMMON /OUTPUT/ LE(17)
       COMMON /MACHIN/ MACH

@@ -1,3 +1,6 @@
 
 # Object files
 *.o
+
+# Nastran library
+libnastran.a
