@@ -1,9 +1,8 @@
 
 # GNU Fortran
 
-F77 = gfortran
-FFLAGS += -std=legacy
-FOPTS = -g
+FC = gfortran
+FFLAGS += -g -w -fno-range-check -fno-automatic -fcray-pointer
 
 # Archive
 
@@ -32,7 +31,7 @@ TAGS:	$(SRCF)
 # Template rules
 
 %.o:	%.f
-	$(F77) $(FOPTS) $(FFLAGS) -c -o $@ $<
+	$(FC) $(FFLAGS) -c -o $@ $<
 
 # Phony rules
 
