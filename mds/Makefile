@@ -4,35 +4,41 @@
 FC = gfortran
 FFLAGS += -g -w -fno-range-check -fno-automatic -fcray-pointer
 
-# Objects
+# Nastran Objects
 
-OBJS += dummy.o mapfns.o
-OBJS += zzcore.o xsem00.o
-OBJS += init.o geturn.o
-OBJS += klock.o waltim.o cputim.o tdate.o
-OBJS += conmsg.o read.o close.o
-OBJS += khrbcd.o khrfn1.o khrfn4.o
-OBJS += gino.o ginoio.o
-OBJS += bufchk.o
-OBJS += bckrec.f fwdrec.o rectyp.o
-OBJS += qopen.o qread.o rewind.o sgino.o write.o
-OBJS += bldpk.o bpack.o bunpak.o bunpk.o intpk.o pack.o unpack.o
-OBJS += logfil.o skpfil.o # logfil is empty
-OBJS += sofio.o sofiof.o
-OBJS += corwds.o
-OBJS += rdblk.o wrtblk.o
-OBJS += eof.o
-OBJS += mpyq.o
-OBJS += endget.o endgtb.o endput.o
-OBJS += getstr.o putstr.o
-OBJS += getstb.o
-OBJS += filpos.o savpos.o
-OBJS += emgsoc.o
-OBJS += defcor.o
-OBJS += gnfiat.o
-OBJS += umffd.o # Empty
-OBJS += k2b.o
-OBJS += exfort.o
+NASTOBJS += dummy.o mapfns.o
+NASTOBJS += zzcore.o xsem00.o
+NASTOBJS += init.o geturn.o
+NASTOBJS += klock.o waltim.o cputim.o tdate.o
+NASTOBJS += conmsg.o read.o close.o
+NASTOBJS += khrbcd.o khrfn1.o khrfn4.o
+NASTOBJS += gino.o ginoio.o
+NASTOBJS += bufchk.o
+NASTOBJS += bckrec.f fwdrec.o rectyp.o
+NASTOBJS += qopen.o qread.o rewind.o sgino.o write.o
+NASTOBJS += bldpk.o bpack.o bunpak.o bunpk.o intpk.o pack.o unpack.o
+NASTOBJS += logfil.o skpfil.o # logfil is empty
+NASTOBJS += sofio.o sofiof.o
+NASTOBJS += corwds.o
+NASTOBJS += rdblk.o wrtblk.o
+NASTOBJS += eof.o
+NASTOBJS += mpyq.o
+NASTOBJS += endget.o endgtb.o endput.o
+NASTOBJS += getstr.o putstr.o
+NASTOBJS += getstb.o
+NASTOBJS += filpos.o savpos.o
+NASTOBJS += emgsoc.o
+NASTOBJS += defcor.o
+NASTOBJS += gnfiat.o
+NASTOBJS += umffd.o # Empty
+NASTOBJS += k2b.o
+NASTOBJS += exfort.o
+
+# Fixed Field Objects
+
+FIXOBJS += cputim.o dummy.o k2b.o khrbcd.o khrfn1.o mapfns.o waltim.o
+
+# Nastran Library
 
 LIBNASTRAN = ../mis/libnastran.a
 
@@ -44,8 +50,8 @@ all:	nastran nasthelp nastplot fixed-field check-fill
 
 # Specific targets
 
-nastran:	nastrn.o $(OBJS)
-	$(FC) $(FFLAGS) -o $@ $< $(OBJS) $(LIBNASTRAN)
+nastran:	nastrn.o $(NASTOBJS)
+	$(FC) $(FFLAGS) -o $@ $< $(NASTOBJS) $(LIBNASTRAN)
 
 nasthelp:	nasthelp.o
 	$(FC) $(FFLAGS) -o $@ $<
@@ -53,8 +59,8 @@ nasthelp:	nasthelp.o
 nastplot:	nastplot.o
 	$(FC) $(FFLAGS) -o $@ $<
 
-fixed-field:	ff.o
-	$(FC) $(FFLAGS) -o $@ $<
+fixed-field:	ff.o $(FIXOBJS)
+	$(FC) $(FFLAGS) -o $@ $< $(FIXOBJS) $(LIBNASTRAN)
 
 check-fill:	chkfil.f
 	$(FC) $(FFLAGS) -o $@ $<
