@@ -1,5 +1,6 @@
 
 # Ignore executables
+nastran
 nastran.exe
 nasthelp.exe
 nastplot.exe

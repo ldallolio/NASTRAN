@@ -1,4 +1,5 @@
       SUBROUTINE SOFUT
+!     Modified by Harry Schaeffer 06/27/2015 to declare RENAME external      
 C
 C     THE PURPOSE OF THE MODULE IS TO PERFORM THE TASKS OF ALTERING THE
 C     SOF FILE IN ORDER TO EDIT, PURGE, AND EQUIVALENCE THE DATA ITEMS
@@ -8,7 +9,6 @@ C     SOFUT     //V,N,DRY/C,N,NAME1/C,N,OPER/C,N,OPT/C,N,NAME2/
 C                 C,N,PREFX/C,N,IA/C,N,IB/C,N,IC/C,N,ID/C,N,IE $
 C
       external rename
-C
       LOGICAL         DITUP
       INTEGER         DRY,OPER,OPT,PREFX,SYSBUF,DELE,RENAM,NAME(2)
       CHARACTER       UFM*23,UWM*25

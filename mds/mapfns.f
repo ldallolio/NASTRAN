@@ -1,4 +1,5 @@
       FUNCTION MAPFNS (I)
+!     Modified 06/27/2015 by Harry Schaeffer to change syntax of LOC      
 C
 C     THIS FUNCTION PROVIDES ENTRIES FOR VARIOUS FUNCTIONS
 C     ON THE VAX VERSION OF NASTRAN
@@ -28,6 +29,8 @@ C
       ENTRY LOCFX (I)
 C     ===============
       K = LQRO/1000
+!    modify the syntax of LOC      
+!     LOCFX = %LOC(I)/K 
       LOCFX = LOC(I)/K
       RETURN
 C

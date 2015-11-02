@@ -1,4 +1,5 @@
       SUBROUTINE DUMMY
+!     Modified 06/27/2015 by Harry Schaeffer remove entry errtrc      
 C
 C     NOTE:
 C     THIS DUMMY.MIS ROUTINE CONTAINS 4 MACHINE VERSIONS (IBM,CDC,VAX,
@@ -695,9 +696,9 @@ C
       NAME = 'KCONEQ'
       GO TO 100
 C
-      ENTRY FNXTVQ (V1,V2,V3,V4,V5,ZB,I)
-      NAME = 'FNXTVQ'
-      GO TO 100
+!hgs      ENTRY FNXTVQ (V1,V2,V3,V4,V5,ZB,I)        
+!hgs      NAME = 'FNXTVQ'        
+!hgs      GO TO 100        
 C
       ENTRY NTRAN (I,J,K)
       NAME = 'NTRAN'
@@ -954,19 +955,19 @@ C ****
 C     DUMMY ROUTINES REFERENCED ONLY IN LINK 5, ALL MACHINES
 C ****
 C
-      ENTRY PLBAR1 (I,J)
-      NAME = 'PLBAR1'
-      GO TO 100
+!HGS      ENTRY PLBAR1 (I,J)        
+!hgs      NAME = 'PLBAR1'        
+!hgs      GO TO 100        
+C      
+!hgs      ENTRY PLOADX        
+!hgs      NAME = 'PLOADX'        
+!hgs      GO TO 100        
 C
-      ENTRY PLOADX
-      NAME = 'PLOADX'
-      GO TO 100
-C
-      ENTRY ERRTRC (NAM)
+!hgs      ENTRY ERRTRC (NAM)        
 C     ==================
 C     ERROR TRACEBACK
 C
-      GO TO 220
+!hgs       GO TO 220        
 C
   100 WRITE  (NOUT,150) NAME
   150 FORMAT ('0*** SYSTEM FATAL ERROR  ---  JOB TERMINATED',

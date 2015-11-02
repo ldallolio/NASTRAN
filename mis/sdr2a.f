@@ -14,8 +14,8 @@ C
      4                APP   ,STA   ,REI   ,DS0   ,DS1   ,FRQ   ,TRN   ,
      5                BK0   ,BK1   ,CEI   ,PLA   ,BRANCH,SORT2 ,VEL   ,
      6                ACC   ,TLOADS
+      DIMENSION       ISYSTM(175)
       COMMON /MACHIN/ MACH  ,IHALF ,JHALF
-CZZ   COMMON /ZZSDA2/ Z(1)
       COMMON /ZZZZZZ/ Z(1)
       COMMON /BLANK / APP(2),SORT2,ISTRN  ,STRNFL,IDUMMY(5)    ,STRAIN
       COMMON /SDR2X1/ IEIGEN,IELDEF,ITLOAD,ISYMFL,ILOADS,IDISPL,ISTR  ,
@@ -37,6 +37,7 @@ CZZ   COMMON /ZZSDA2/ Z(1)
      1                LOADNN,SYMM  ,STFTMP,PAGE  ,LINE  ,TLINE ,MAXLIN,
      2                DATE(3)      ,TIME  ,ECHO  ,PLOTS ,DDD(6),MN
       COMMON /TWO   / TWO(32)
+      EQUIVALENCE     (SYSBUF, ISYSTM)
       DATA    MMREIG/ 4HMMRE /
 C
 C
@@ -159,8 +160,6 @@ C
       ASSIGN 160 TO RET
       GO TO 260
   160 ZI = ZI + 1
-C     IF (ZI .LE. N) GO TO 260
-C     GO TO 180
       IF (ZI .GT. N) GO TO 180
       II =II + 1
       IF (II .GT. BUF2) GO TO 280
@@ -201,8 +200,8 @@ C     CONICAL SHELL PROBLEM
 C
       AXIC = .FALSE.
       IF (MN .EQ. 0) GO TO 210
-      NRINGS = RSHIFT(MN,IHALF)
-      NHARMS = MN - LSHIFT(NRINGS,IHALF)
+      NRINGS = ISYSTM(161)
+      NHARMS = MN
       AXIC = .TRUE.
   210 CONTINUE
 C
@@ -219,8 +218,6 @@ C
       CALL SORT (0,0,1,-1,Z(MSET),KN)
       JJ = BUF2 - 1
   230 Z(JJ) = Z(II)
-C     JJ = JJ - 1
-C     II = II - 1
   235 II = II - 1
       IF (Z(II) .EQ. Z(JJ)) GO TO 235
       JJ = JJ - 1
@@ -242,13 +239,6 @@ C
 C     SEARCH LIST OF ELEM ID. IF CURRENT ID IS IN LIST RETURN
 C     OTHERWISE ADD ID TO LIST
 C
-C 260 IF (II .NE. 0) GO TO 270
-C     Z(MSET) = ZI
-C     II = MSET
-C     GO TO RET, (160,180)
-C 270 DO 280 J = MSET,II
-C     IF (Z(J) .EQ. ZI) GO TO RET, (160,180)
-C 280 CONTINUE
 C
 C     ADD ELEM ID TO LIST. NO NEED TO CHECK DUPLICATE ID HERE
 C

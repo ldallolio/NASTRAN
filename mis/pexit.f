@@ -1,7 +1,7 @@
       SUBROUTINE PEXIT
+!     Modified by Harry Schaeffer 06/27/2015, declare LINK external      
 C
       external link
-C
       INTEGER         HH,SS,DATE(3)
       COMMON /OUTPUT/ LE(17)
       COMMON /MACHIN/ MACH

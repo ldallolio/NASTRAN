@@ -1,4 +1,4 @@
-      SUBROUTINE FORWRT ( FORM, IDATA, DATA, DDATA, CDATA, NWDS )
+      SUBROUTINE FORWRT ( FORM, INDATA, NWDS )
 C********************************************************************
 C    EXPECTED TYPES OF FORMAT CODES ARE AS FOLLOWS
 C        NH------       NENN.N       NDNN.N         NX
@@ -15,18 +15,25 @@ C********************************************************************
       CHARACTER*1     LPAREN, RPAREN, PERIOD, COMMA, NUMBER(10)
       CHARACTER*1     H, E, D, X, F, I, G, A, P
       CHARACTER*2     PFACT
-      CHARACTER*4     CDATA(10)
+      CHARACTER*4     CDATA(200)
       CHARACTER*132   LINE
       CHARACTER*132   TFORM
-      INTEGER*4       IDATA(NWDS)
-      REAL*4          DATA(NWDS)
-      REAL*8          DDATA(NWDS)
+      INTEGER*4       INDATA(NWDS), IDATA(200)
+      REAL*4          DATA(200)
+      REAL*8          DDATA(100)
       COMMON /SYSTEM/ ISYSBF, IWR
+      EQUIVALENCE     (IDATA, DATA, DDATA, CDATA )
       DATA            H/'H'/, E/'E'/, D/'D'/, X/'X'/, F/'F'/
       DATA            I/'I'/, G/'G'/, A/'A'/, P/'P'/
       DATA            LPAREN /'('/, RPAREN/')'/, PERIOD/'.'/
       DATA            COMMA  /','/, SLASH /'/'/, BLANK /' '/
       DATA            NUMBER /'0','1','2','3','4','5','6','7','8','9'/
+      IF ( NWDS .LE. 200 ) GO TO 2
+      PRINT *,' LIMIT OF WORDS REACHED IN FORWRT, LIMIT=200'
+      CALL PEXIT
+2     DO 3 KB = 1, NWDS
+      IDATA( KB ) = INDATA( KB )
+3     CONTINUE
       ILOOP = 0
       ICHAR = 1
       NCNT  = 1
@@ -75,6 +82,8 @@ C PROCESS ALPHA FIELD--FORMAT(NNANNN) (NN=IMULT,NNN=IFIELD)
 300   ICHAR = ICHAR + 1
       IF ( NCNT .GT. NWDS ) GO TO 1200
       CALL FORNUM ( FORM, ICHAR, IFIELD )
+      ILEFT = NWDS - NCNT + 1
+      IF ( ILEFT .LT. IMULT ) IMULT = ILEFT
       IF ( IMULT .EQ. 0 ) IMULT = 1
       WRITE ( TFORM, 902 ) IMULT, IFIELD
 902   FORMAT('(',I2,'A',I2,')')

@@ -1,4 +1,5 @@
       SUBROUTINE SGINO
+!     Modified by Harry Schaeffer 06/27/2015 change open stmt      
 C
 C     REVISED  9/90 BY G.CHAN/UNISYS. TO REACTIVATE PLT1 FILE
 C
@@ -121,9 +122,11 @@ C     IF (MACH .EQ IBM) CALL FILEDEF (PTAPE,RECFM,FB(MA))
      1      STATUS = 'OLD',
      2      FORM   = 'FORMATTED',
      3      ACCESS = 'SEQUENTIAL',
-     4      IOSTAT = J,
-     6      RECL  = IRECSZ)
-C
+     4      IOSTAT = J)        
+!hgs 06/27/2015    5      CARRIAGECONTROL = NONE        
+!hgs 06/27/2015    6      ,RECL  = IRECSZ)        
+C            RECL IS NEEDED BY VAX, AND POSSIBLY OTHER MACHINES)        
+C   6      )        
       IF (J .NE. 0) GO TO 60
  30   READ   (PTAPE,40,END=50) J
  40   FORMAT (A1)
@@ -135,9 +138,11 @@ C
      1      STATUS = 'NEW',
      2      FORM   = 'FORMATTED',
      3      ACCESS = 'SEQUENTIAL',
-     4      IOSTAT = J,
-     6      RECL  = IRECSZ)
-C
+     4      IOSTAT = J)        
+!hgs     5      CARRIAGECONTROL = NONE        
+!hgs     6      ,RECL  = IRECSZ)        
+C            RECL IS NEEDED BY VAX, AND POSSIBLY OTHER MACHINES)        
+C    6      )        
       IF (J .EQ. 0) GO TO 80
       WRITE  (NOUT,70) PLTX,PTAPE
  70   FORMAT ('0*** SYSTEM FATAL ERROR. SGINO CAN NOT OPEN ',A4,

@@ -203,6 +203,9 @@ C    4                 -1,  -1,  -1,  -1, 209,  -1,  -1,  -1,
 C    5                 -1,  -1,  -1,  -1,  -1,  -1, 216, 214,
 C    6                215, 9*-1 /
 C
+! for debugging:
+      character(4) crec(20), cdate(3)
+      equivalence(record,crec),(idate,cdate)      
       ISCRX = ISCR
       IDMAP = 0
       DO 10 K = 1,8

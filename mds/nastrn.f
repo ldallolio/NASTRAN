@@ -1,12 +1,15 @@
       PROGRAM NASTRN
 C
-      CHARACTER*44    VALUE, DSNAMES
+!     Modified by Harry Schaeffer 06/30/2015 to change length of dsnames       
+      CHARACTER*80    VALUE, DSNAMES ! if you change this also change len_dsnames
       CHARACTER*5     TMP
       INTEGER         SPERLK,DEBUG
       COMMON /SYSTEM/ ISYSTM(94),SPERLK
       COMMON /DSNAME/ DSNAMES(80)
       COMMON /SOFDSN/ SDSN(10)
       CHARACTER*60    SDSN
+      integer,parameter :: len_dsnames = 80 ! Change this if number of characters
+                                  ! for dsnames chnages
 C
 C     SAVE STARTING CPU TIME AND WALL CLOCK TIME IN /SYSTEM/
 C
@@ -18,9 +21,9 @@ C
       SPERLK = 1
       ISYSTM(11) = 1
       VALUE = ' '
-      LEN = 44
       CALL GETENV ( 'DIRCTY', VALUE )
-      DO 5 I = 44, 1, -1
+!      DO 5 I = 44, 1, -1
+      DO 5 I = len_dsnames, 1, -1
       IF ( VALUE( I:I ) .eq. ' ' ) GO TO  5
       LEN = I
       GO TO 7

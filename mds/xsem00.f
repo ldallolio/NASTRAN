@@ -1,4 +1,5 @@
       SUBROUTINE XSEM00                                                 00000100
+!     Modifies by Harry Schaeffer on 06/30/2015 to explicitly define std I/O
 C **********************************************************************00000200
 C THE PURPOSE OF THIS ROUTINE IS TO EXECUTE THE PREFACE AND THEN TO     00000300
 C EXECUTE MODULES ACCORDING TO THE DMAP.  THE DMAP IS READ FROM THE     00000400
@@ -36,7 +37,8 @@ C                                                                       00001800
      D                                                                  00003800
      E      /MSGX  /NMSG                                                00003900
 C                                                                       00004000
-      EQUIVALENCE (XX(1),NOUT)                                          00004100
+      EQUIVALENCE (XX(1),NOUT),                                         00004100
+     1            (xx(3),nin) ! input file number
       EQUIVALENCE (XX(19),PLOTF)                                        00004200
 C                                                                       00004300
       DATA REW     /     1/,NOREW/     0/,POOL /4HPOOL/                 00004400
@@ -53,9 +55,60 @@ C                                                                       00004300
       DATA EQUIV, PURGE /4HEQUI, 4HV   , 4HPURG, 4HE   /                00005500
       DATA XEQU , XPUR  /4HXEQU, 4HXPUR/                                00005600
       DATA XSAV , YCHK  /4HXSAV, 4HXCHK/                                00005700
+!     Set varables
+      integer error_id
+	  integer nin, nout
+      character(80) proj,ft05,ft06,output,infile      
 C*****                                                                  00005800
 C INITIALIZE MACHINE DEPENDENT CONSTANTS                                00005900
       CALL BTSTRP                                                       00006000
+!----------------------------------------------------------------------
+! hgs 12/06/2104 - The NASA delivery uses redirected input and out put
+!                  so these files are not explicitly opened. I need
+!                  to change the stdin and stdout to allow the use of
+!                  GDB in the script file. Therefore the following mod-
+!                  ifications explicitly open the stdin and stdout files
+!                  using the FTN5 and FTN6 ENV set by the script.
+!
+c
+c     open inout and output files
+c
+      call getenv('PROJ',proj)
+	  call getenv('FT05',ft05)
+	  call getenv('FT06',ft06)
+	  output = trim(proj)//'/'//trim(ft06)
+	  error_id = 0
+  101 continue
+      ifile = nout
+      open(nout,file=output,form='formatted',
+     1status='unknown',iostat=ierr,err=102)
+      go to 103
+  102 continue
+      error_id = -2
+      go to 104
+  103 continue
+      ifile = nin
+	  infile = trim(proj)//'/'//trim(ft05)
+      open(nin,file=infile,form='formatted'
+     1    ,status='unknown', iostat =ierr,err=106)
+      go to 105
+  106 continue
+      error_id = -1
+  104 continue
+c
+c     open error
+c
+      write(nout,*) 'Error in opening file =',ifile,' IOSTAT = ',ierr
+	  select case(error_id)
+	  case(-1)
+	    write(nout,'(a)') 'File name: ',infile
+	  case(-2)
+	    write(nout,'(a)') 'File name: ',output
+	  end select
+      call pexit ! close down and exit with ierror
+	  return
+c
+ 105  continue
       LVAX = MACH.EQ.5                                                  00006100
 C*****                                                                  00006200
 C EXECUTE PREFACE                                                       00006300
@@ -74,7 +127,9 @@ C*****                                                                  00006400
 C*****                                                                  00007600
 C RETURN HERE AFTER MODULE HAS EXECUTED                                 00007700
 C*****                                                                  00007800
-   10 IF (INOSCR(4).EQ.XSAV.OR.INOSCR(4).EQ.YCHK) GO TO 20              00007900
+   10 continue
+      call flush()
+      IF (INOSCR(4).EQ.XSAV.OR.INOSCR(4).EQ.YCHK) GO TO 20              00007900
       WORDB(4) = WORDE(2)                                               00008000
       CALL CONMSG(WORDB,4,0)                                            00008100
    20 IF(NMSG .GT. 0) CALL MSGWRT                                       00008200

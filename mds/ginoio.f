@@ -1,4 +1,5 @@
       SUBROUTINE GINOIO (*,OPCODE,B,IMHERE)
+!     Modified by Harry Schaeffer to change dsnames length and number      
 C
 C     GINO INPUT/OUTPUT OPERATIONS OF THE BUFFER BLOCKS (FORTRAN)
 C     REVISED  1/06/87, BY G.CHAN/UNISYS
@@ -15,10 +16,10 @@ C         8 - RE-READ ONE BLOCK              =4+3
 C         9 - CLOSE (DELETE) AND REWIND FILE =7+1
 C        10 - REWIND AND READ FIRST BLOCK    =1+3
 C
-      CHARACTER*44    DSNAMES
+      CHARACTER*80    DSNAMES ! increase from 44 to 80
       INTEGER         OPCODE   ,ENTRY ,RW    ,F     ,B(NBUFF3) ,R12345,
      1                R        ,RF
-      COMMON /DSNAME/ DSNAMES(80)
+      COMMON /DSNAME/ DSNAMES(99) ! increase from 80 to 99
       COMMON /MACHIN/ MAC(3)   ,LQRO
       COMMON /SYSTEM/ SYSBUF   ,NOUT
       COMMON /GINOX / LENGTH   ,F     ,EOR   ,OP    ,ENTRY ,LSTNAM    ,

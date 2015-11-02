@@ -1,4 +1,5 @@
       SUBROUTINE TDATE (DATE)
+!     Modified by Harry Schaeffer to use gfortran intrinsic idate      
 C
 C     VAX VERSION
 C     ===========
@@ -7,18 +8,13 @@ C      CRAY AND HP DO NOT HAVE IDATE)
 C
 C     THIS ROUTINE OBTAINS THE MONTH, DAY AND YEAR, IN INTEGER FORMAT
 C
-      INTEGER DATE(3)
+      INTEGER DATE(3), DATE1(3)        
 C
-      character*8 chdate
-      character*10 time
-      character*5 zone
-      integer values(8)
-C
-      call date_and_time(chdate, time, zone, values)
-C
-      date(1) = values(2)        ! Month
-      date(2) = values(3)        ! Day
-      date(3) = values(1)        ! Year
-C
+      CALL IDATE (DATE1)        
+C                 DAY   MONTH     YEAR        
+C     THESE DATES HAD TO BE INTERCHANGED FOR THE SUN
+      DATE(1)=DATE1(2)
+      DATE(2)=DATE1(1)
+      DATE(3)=DATE1(3)
       RETURN
       END

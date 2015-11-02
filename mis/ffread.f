@@ -1,4 +1,6 @@
       SUBROUTINE FFREAD (*,CARD)
+!     Modified 06/27/2015 by Harry Schaeffer to change readonly
+!     to action='read'      
 C
 C     THIS ROUTINE READS INPUT CARDS IN FREE FIELD OR FIXED FIELD
 C     FORMATS.
@@ -373,7 +375,10 @@ C     J  = J - 1
       IF (INFLAG .LT. IWO) INFLAG = IWO - 1
       INFLAG = INFLAG + 1
       IF (IBMCDC.EQ.0) OPEN(UNIT=INFLAG,FILE=A8(1),STATUS='OLD',ERR=470)
-      IF (IBMCDC.NE.0) OPEN(UNIT=INFLAG,FILE=A48  ,STATUS='OLD',ERR=470)
+      IF (IBMCDC.NE.0) OPEN(UNIT=INFLAG,FILE=A48  ,STATUS='OLD',ERR=470,
+!     change readonly to action='read' for gfortran
+     1 action='read')
+!     1                      READONLY)        
 C
 C     VAX - THE PARAMETER  'READONLY' IS NEEDED IF FILE PROTECTION IS
 C           SET FOR READ (=R) ONLY.

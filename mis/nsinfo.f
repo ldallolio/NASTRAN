@@ -1,4 +1,5 @@
       SUBROUTINE NSINFO (JUMP)
+!     Modified by Harry Schaeffer 06/27/2015. See change at or near line 68      
 C
 C     THIS ROUTINE READS AND PROCESSES DATA IN THE NASINFO FILE
 C
@@ -64,7 +65,11 @@ C
       N = NTAB(I)
       IF (N .EQ.  0) STOP ' N=0 IN NSINFO'
       IF (N .LT.  0) OPEN (UNIT=LU,FILE=NAS14(-N),STATUS='OLD',ERR=280)
-      IF (N .GT.  0) OPEN (UNIT=LU,FILE=NASINF(N),STATUS='OLD',ERR=280)
+      IF (N .GT.  0) OPEN (UNIT=LU,FILE=NASINF(N),STATUS='OLD',ERR=280
+!     Modified by Harry Schaeffer 06/27/2015 to remove shared and 
+!     change readonly to action 'read'      
+!     1                    ,SHARED,READONLY)     ! <== VAX
+     1                    ,action = 'read')       
 C
 C     SEARCH FOR FIRST EQUAL-LINE
 C

@@ -1,4 +1,6 @@
       SUBROUTINE GINO (*,*,BUFF,A,INCT,RDWRT)
+!     Modified by Harry Schaeffer 06/29/2015 change dsnames chars
+!     and - later - to change the open statemnt     
 C
 C     REVISED 1/06/87, BY G.CHAN/UNISYS
 C     REVISED 8/ 8/88, CONSOLIDATED GINO/GINOIO/DCODE INTO ONE ROUTINE
@@ -25,7 +27,7 @@ C
       IMPLICIT INTEGER       (A-Z)
       INTEGER         A(1)  ,INCT(2),BUFF(8)  ,NAMBCD(2), SUB(2)
       REAL            X     ,Y
-      CHARACTER*44    DSNAMES
+      CHARACTER*80    DSNAMES ! increase from 44 to 80
       CHARACTER*8     OPX(9)
       COMMON /DSNAME/ DSNAMES(80)
       COMMON /GINOX / LENGTH,FILEX ,EOR   ,OP    ,ENTRY ,LSTNAM    ,
@@ -1603,7 +1605,12 @@ C
 C
  4000 IF (F .LE. 1) GO TO 4200
       IF (IOPEN(F) .EQ. 1) GO TO 4005
-      LREC = NBUFF3*(MOD(LQRO,100)/10)
+!     gfortran change. Record length is bytes      
+!hgs      LREC = NBUFF3*(MOD(LQRO,100)/10)
+!     get number of bytes in an intger
+      nbytes = sizeof(f)
+      lrec = nbuff3*nbytes
+         
 C                    MOD(LQRO,100)/10 IS BYTE OR WORD COUNT
 C
 C     SEE VAX FORTRAN PERFORMANCE GUIDE, MAY 1990, SECTION 6.1.1 FOR
@@ -1611,8 +1618,9 @@ C     SPECIFYING BLOCKSIZE & BUFFERCOUNT
 C     (HOWEVER, THE INCLUSION OF BLOCKSIZE SEEMS TO SLOW DOWN, AND THE
 C     BUFFERCOUNT SEEMS TO MAKE NO DIFFERENT IN SPEED IMPROVEMENT)
 C
-      OPEN (UNIT=F,ACCESS='DIRECT',FORM='UNFORMATTED',STATUS='UNKNOWN',
-     1      RECL=LREC, FILE=DSNAMES(F))
+      OPEN (UNIT=F,ACCESS='DIRECT',FORM='UNFORMATTED',
+     1      STATUS='UNKNOWN', 
+     2      RECL=LREC, FILE=DSNAMES(F))        
 C    2               ,BLOCKSIZE=LREC,BUFFERCOUNT=2)
 C    2               ,RCDS     =LREC)
       IOPEN(F) = 1

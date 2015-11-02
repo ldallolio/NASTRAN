@@ -33,6 +33,7 @@ NASTOBJS += gnfiat.o
 NASTOBJS += umffd.o # Empty
 NASTOBJS += k2b.o
 NASTOBJS += exfort.o
+NASTOBJS += rfopen.o forwrt.o fornum.o
 
 # Fixed Field Objects
 

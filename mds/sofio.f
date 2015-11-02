@@ -1,4 +1,5 @@
       SUBROUTINE SOFIO (IRW,IBLKNM,BUF)
+!      Modified by Harry Schaeffer to remove MAXREC      
 C
       LOGICAL         ONCE
       INTEGER         FILNAM,FILSIZ,HIBLK,BLKSIZ,NUNITS(10),
@@ -38,6 +39,7 @@ CWKBI
      1      STATUS = 'UNKNOWN',
      2      FORM   = 'UNFORMATTED',
      3      ACCESS = 'DIRECT',
+!hgs     4      MAXREC = FILSIZ(I),        
      5      RECL   = IBKSZ)
 C    6      RECORDTYPE = 'FIXED',
 C    7      BLOCKSIZE  = IBKSZ,
