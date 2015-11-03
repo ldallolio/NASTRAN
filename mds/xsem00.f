@@ -57,7 +57,7 @@ C                                                                       00004300
       DATA XSAV , YCHK  /4HXSAV, 4HXCHK/                                00005700
 !     Set varables
       integer error_id
-	  integer nin, nout
+      integer nin, nout
       character(80) proj,ft05,ft06,output,infile      
 C*****                                                                  00005800
 C INITIALIZE MACHINE DEPENDENT CONSTANTS                                00005900
@@ -73,11 +73,10 @@ C INITIALIZE MACHINE DEPENDENT CONSTANTS                                00005900
 c
 c     open inout and output files
 c
-      call getenv('PROJ',proj)
-	  call getenv('FT05',ft05)
-	  call getenv('FT06',ft06)
-	  output = trim(proj)//'/'//trim(ft06)
-	  error_id = 0
+      call getenv('FT05',ft05)
+      call getenv('FT06',ft06)
+      output = trim(ft06)
+      error_id = 0
   101 continue
       ifile = nout
       open(nout,file=output,form='formatted',
@@ -88,7 +87,7 @@ c
       go to 104
   103 continue
       ifile = nin
-	  infile = trim(proj)//'/'//trim(ft05)
+      infile = trim(ft05)
       open(nin,file=infile,form='formatted'
      1    ,status='unknown', iostat =ierr,err=106)
       go to 105
@@ -99,14 +98,14 @@ c
 c     open error
 c
       write(nout,*) 'Error in opening file =',ifile,' IOSTAT = ',ierr
-	  select case(error_id)
-	  case(-1)
-	    write(nout,'(a)') 'File name: ',infile
-	  case(-2)
-	    write(nout,'(a)') 'File name: ',output
-	  end select
+      select case(error_id)
+      case(-1)
+        write(nout,'(a)') 'File name: ',infile
+      case(-2)
+        write(nout,'(a)') 'File name: ',output
+      end select
       call pexit ! close down and exit with ierror
-	  return
+      return
 c
  105  continue
       LVAX = MACH.EQ.5                                                  00006100

@@ -10,7 +10,7 @@ C
       COMMON /SYS   / BLKSIZ,SKIP(3),HIBLK
 CWKBNB
       COMMON /SOFDSN/ SDSN(10)
-      CHARACTER*60  SDSN
+      CHARACTER*200  SDSN  ! increase from 60 to 200
 CWKBNE
       DATA    ONCE  /.FALSE./
       DATA    FLSPEC/

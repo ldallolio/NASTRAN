@@ -16,10 +16,10 @@ C         8 - RE-READ ONE BLOCK              =4+3
 C         9 - CLOSE (DELETE) AND REWIND FILE =7+1
 C        10 - REWIND AND READ FIRST BLOCK    =1+3
 C
-      CHARACTER*80    DSNAMES ! increase from 44 to 80
+      CHARACTER*200   DSNAMES ! increase from 44 to 200
       INTEGER         OPCODE   ,ENTRY ,RW    ,F     ,B(NBUFF3) ,R12345,
      1                R        ,RF
-      COMMON /DSNAME/ DSNAMES(99) ! increase from 80 to 99
+      COMMON /DSNAME/ DSNAMES(80)
       COMMON /MACHIN/ MAC(3)   ,LQRO
       COMMON /SYSTEM/ SYSBUF   ,NOUT
       COMMON /GINOX / LENGTH   ,F     ,EOR   ,OP    ,ENTRY ,LSTNAM    ,

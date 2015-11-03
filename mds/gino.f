@@ -27,7 +27,7 @@ C
       IMPLICIT INTEGER       (A-Z)
       INTEGER         A(1)  ,INCT(2),BUFF(8)  ,NAMBCD(2), SUB(2)
       REAL            X     ,Y
-      CHARACTER*80    DSNAMES ! increase from 44 to 80
+      CHARACTER*200   DSNAMES ! increase from 44 to 200
       CHARACTER*8     OPX(9)
       COMMON /DSNAME/ DSNAMES(80)
       COMMON /GINOX / LENGTH,FILEX ,EOR   ,OP    ,ENTRY ,LSTNAM    ,
