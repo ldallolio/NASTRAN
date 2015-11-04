@@ -1,2 +1,3 @@
 AUTOMAKE_OPTIONS = foreign
-SUBDIRS = mis mds
+SUBDIRS = mis mds man test
+TEST = test/testbar

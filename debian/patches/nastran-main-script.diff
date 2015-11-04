@@ -1,0 +1,21 @@
+--- a/bin/nastran.sh
++++ b/bin/nastran.sh
+@@ -19,7 +19,7 @@
+ 
+ # ENV VARIABLES
+ 
+-export RFDIR=$nasthome/rf
++export RFDIR=/usr/share/nastran/rf
+ export DIRCTY=/tmp
+ 
+ export FT05=$1
+@@ -41,7 +41,7 @@
+ 
+ # RUN NASTRAN
+ 
+-$nasthome/mds/nastran
+-#gdb $nasthome/mds/nastran
++/usr/bin/nast-run
++#gdb /usr/bin/nast-run
+ 
+ 

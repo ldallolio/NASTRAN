@@ -1,0 +1,5 @@
+#!/usr/bin/dh-exec
+mds/nastran => /usr/bin/nast-run
+rf /usr/share/nastran
+test/bar.inp /usr/share/nastran/test
+bin/nastran.sh => /usr/bin/nastran
