@@ -1,6 +1,7 @@
 
 # Object files
 *.o
+*.trs
 
 # http://www.gnu.org/software/automake
 Makefile

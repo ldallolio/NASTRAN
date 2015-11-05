@@ -8,7 +8,6 @@ AC_OUTPUT(Makefile mis/Makefile mds/Makefile man/Makefile test/Makefile)
 
 # Checks for programs.
 AC_PROG_F77()
-PKG_CHECK_MODULES([CHECK], [check >= 0.9.6])
 
 # Checks for libraries.
 AC_PROG_RANLIB()
