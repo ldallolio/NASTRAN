@@ -9,11 +9,6 @@ C
 C
       WRITE  (NOUT,10) NAME,NO
    10 FORMAT ('0*** ERROR TRACEBACK INITIATED BY ',A8,' AT',I5)
-      JX = 100000000 + IBUF - NOUT
-      IZ(JX) = JX
-      JX = -JX
-      X  = JX
-      X  = SQRT(X)
-      WRITE (JX) X
-      RETURN
+      call flush(NOUT)
+      call abort
       END
