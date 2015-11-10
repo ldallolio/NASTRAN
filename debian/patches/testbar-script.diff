@@ -1,0 +1,16 @@
+--- a/test/testbar.sh
++++ b/test/testbar.sh
+@@ -1,2 +1,12 @@
+ #!/bin/bash
+-../bin/nastran.sh bar.inp
++export FT06=bar.out
++export NPTPNM=bar.nptp
++export PLTNM=bar.plt
++export PUNCHNM=bar.pnh
++export OUT11=bar.out11
++export IN12=bar.in12
++export LOGNM=bar.log
++export FT05=bar.inp
++export RFDIR=../rf
++export DIRCTY="${TMPDIR:-/tmp}"
++../mds/nastran

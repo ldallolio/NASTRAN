@@ -6,7 +6,7 @@
  
 -export RFDIR=$nasthome/rf
 +export RFDIR=/usr/share/nastran/rf
- export DIRCTY=/tmp
+ export DIRCTY="${TMPDIR:-/tmp}"
  
  export FT05=$1
 @@ -41,7 +41,7 @@
@@ -15,7 +15,7 @@
  
 -$nasthome/mds/nastran
 -#gdb $nasthome/mds/nastran
-+/usr/bin/nast-run
-+#gdb /usr/bin/nast-run
++/usr/lib/nastran/nast-run
++#gdb /usr/lib/nastran/nast-run
  
  
