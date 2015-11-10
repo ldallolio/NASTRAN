@@ -20,7 +20,7 @@ fi
 # ENV VARIABLES
 
 export RFDIR=$nasthome/rf
-export DIRCTY=/tmp
+export DIRCTY="${TMPDIR:-/tmp}"
 
 export FT05=$1
 
