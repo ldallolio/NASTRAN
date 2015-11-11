@@ -1,4 +1,6 @@
-TESTS = bar.inp
+TESTS = bar.inp buckling_solid_shell_bar.bdf \
+freq_solid_shell_bar.bdf mode_solid_shell_bar.bdf \
+static_solid_shell_bar.bdf static_solid_shell_bar_pload1.bdf
 
 XFAIL_TESTS =  buckling_solid_shell_bar.bdf \
 freq_solid_shell_bar.bdf mode_solid_shell_bar.bdf \
