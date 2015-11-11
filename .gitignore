@@ -3,6 +3,18 @@
 *.o
 *.trs
 
+# test files
+*.in12
+*.log
+*.out
+*.out11
+*.nptp
+*.plt
+*.pnh
+*.15
+*.16
+*.76
+
 # http://www.gnu.org/software/automake
 Makefile
 

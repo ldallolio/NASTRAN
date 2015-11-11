@@ -4,7 +4,7 @@
 AC_PREREQ([2.69])
 AC_INIT([nastran], [0.1.93], [luca.dallolio@gmail.com])
 AM_INIT_AUTOMAKE([foreign parallel-tests color-tests])
-AC_OUTPUT(Makefile mis/Makefile mds/Makefile man/Makefile test/Makefile)
+AC_OUTPUT(Makefile mis/Makefile mds/Makefile man/Makefile nid/Makefile test/Makefile)
 
 # Checks for programs.
 AC_PROG_F77()
