@@ -411,8 +411,8 @@ t04021b.nid t05031a.nid t08021a.nid t08022a.nid t08031a.nid t09051a.nid \
 t09061a.nid t09071a.nid t13021a.nid t13022a.nid t16011a.nid t17011a.nid
 
 XFAIL_TESTS = d01011b.nid d01011c.nid d01021b.nid d01151a.nid d01161a.nid \
-d02021a.nid d02022a.nid d02023a.nid d02024a.nid d02025a.nid \
-d02026a.nid d02027a.nid d02031a.nid d02032a.nid d02033a.nid \
+d02022a.nid d02023a.nid d02024a.nid d02025a.nid \
+d02026a.nid d02027a.nid d02032a.nid d02033a.nid \
 d02034a.nid d02035a.nid d02036a.nid d03011a.nid d03012a.nid \
 d03013a.nid d03014a.nid d03041a.nid d05011a.nid d11011b.nid \
 d12011a.nid t00001a.nid t01271a.nid t03111a.nid t03111b.nid \
@@ -768,7 +768,7 @@ uninstall-am:
 
 
 clean-local:
-	-rm -f *.out *.in12 *.out11 *.nptp *.plt *.pnh *.log *.15 *.16 *.76
+	-rm -f *.out *.in12 *.out11 *.nptp *.plt *.pnh *.log *.sof1 *.sof2 *.15 *.16 *.76
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

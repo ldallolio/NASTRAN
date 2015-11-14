@@ -51,26 +51,26 @@ c      print *, achar(27)//'[34m', 'DIRCTY=', value, achar(27)//'[0m'
       CALL GETENV ( 'PUNCHNM', VALUE )
       DSNAMES(77) = VALUE
       
-!      CALL GETENV ( 'SOF1', VALUE )
-!      SDSN(1) = VALUE
-!      CALL GETENV ( 'SOF2', VALUE )
-!      SDSN(2) = VALUE
-!      CALL GETENV ( 'SOF3', VALUE )
-!      SDSN(3) = VALUE
-!      CALL GETENV ( 'SOF4', VALUE )
-!      SDSN(4) = VALUE
-!      CALL GETENV ( 'SOF5', VALUE )
-!      SDSN(5) = VALUE
-!      CALL GETENV ( 'SOF6', VALUE )
-!      SDSN(6) = VALUE
-!      CALL GETENV ( 'SOF7', VALUE )
-!      SDSN(7) = VALUE
-!      CALL GETENV ( 'SOF8', VALUE )
-!      SDSN(8) = VALUE
-!      CALL GETENV ( 'SOF9', VALUE )
-!      SDSN(9) = VALUE
-!      CALL GETENV ( 'SOF10', VALUE )
-!      SDSN(10) = VALUE
+      CALL GETENV ( 'SOF1', VALUE )
+      SDSN(1) = VALUE
+      CALL GETENV ( 'SOF2', VALUE )
+      SDSN(2) = VALUE
+      CALL GETENV ( 'SOF3', VALUE )
+      SDSN(3) = VALUE
+      CALL GETENV ( 'SOF4', VALUE )
+      SDSN(4) = VALUE
+      CALL GETENV ( 'SOF5', VALUE )
+      SDSN(5) = VALUE
+      CALL GETENV ( 'SOF6', VALUE )
+      SDSN(6) = VALUE
+      CALL GETENV ( 'SOF7', VALUE )
+      SDSN(7) = VALUE
+      CALL GETENV ( 'SOF8', VALUE )
+      SDSN(8) = VALUE
+      CALL GETENV ( 'SOF9', VALUE )
+      SDSN(9) = VALUE
+      CALL GETENV ( 'SOF10', VALUE )
+      SDSN(10) = VALUE
       
       OPEN (  4, FILE=DSNAMES(4) ,STATUS='UNKNOWN')
       IF ( DSNAMES(11) .NE. 'none' .and. DSNAMES(11) .ne. '' )

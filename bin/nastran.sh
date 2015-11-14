@@ -38,6 +38,8 @@ export PUNCHNM=$progname.pnh
 export OUT11=$progname.out11
 export IN12=$progname.in12
 export LOGNM=$progname.log
+export SOF1=$progname.sof1
+export SOF2=$progname.sof2
 
 # RUN NASTRAN
 
