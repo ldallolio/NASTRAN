@@ -7,7 +7,9 @@ export IN12=$1.in12
 export LOGNM=$1.log
 export FT05=$1
 export RFDIR=../rf
-export SOF1=$1.sof1
+if [ -z "$SOF1" ]; then
+	export SOF1=$1.sof1
+fi 
 export SOF2=$1.sof2
 export FT18=$1.sof
 export DICTNM="none"
@@ -27,6 +29,6 @@ export FTN23="none"
 export DBMEM="14000000"
 export OCMEM="14000000"
 
-
+set > /tmp/set.txt
 export DIRCTY="${TMPDIR:-/tmp}"
 ../mds/nastran

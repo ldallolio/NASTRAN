@@ -11,8 +11,8 @@
 *.nptp
 *.plt
 *.pnh
-*.sof1
-*.sof2
+*.nid.sof1
+*.nid.sof2
 *.15
 *.16
 *.76

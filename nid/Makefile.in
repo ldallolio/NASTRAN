@@ -290,12 +290,8 @@ am__set_TESTS_bases = \
 RECHECK_LOGS = $(TEST_LOGS)
 AM_RECURSIVE_TARGETS = check recheck
 TEST_SUITE_LOG = test-suite.log
-am__test_logs1 = $(TESTS:=.log)
-am__test_logs2 = $(am__test_logs1:@EXEEXT@.log=.log)
-TEST_LOGS = $(am__test_logs2:.nid.log=.log)
-NID_LOG_DRIVER = $(SHELL) $(top_srcdir)/test-driver
-NID_LOG_COMPILE = $(NID_LOG_COMPILER) $(AM_NID_LOG_FLAGS) \
-	$(NID_LOG_FLAGS)
+LOG_DRIVER = $(SHELL) $(top_srcdir)/test-driver
+LOG_COMPILE = $(LOG_COMPILER) $(AM_LOG_FLAGS) $(LOG_FLAGS)
 am__set_b = \
   case '$@' in \
     */*) \
@@ -306,6 +302,12 @@ am__set_b = \
     *) \
       b='$*';; \
   esac
+am__test_logs1 = $(TESTS:=.log)
+am__test_logs2 = $(am__test_logs1:@EXEEXT@.log=.log)
+TEST_LOGS = $(am__test_logs2:.nid.log=.log)
+NID_LOG_DRIVER = $(SHELL) $(top_srcdir)/test-driver
+NID_LOG_COMPILE = $(NID_LOG_COMPILER) $(AM_NID_LOG_FLAGS) \
+	$(NID_LOG_FLAGS)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
@@ -393,9 +395,9 @@ d01032a.nid d01033a.nid d01034a.nid d01041a.nid d01051a.nid d01061a.nid \
 d01062a.nid d01071a.nid d01081a.nid d01091a.nid d01092a.nid d01101a.nid \
 d01111a.nid d01112a.nid d01121a.nid d01122a.nid d01131a.nid d01132a.nid \
 d01133a.nid d01141a.nid d01151a.nid d01161a.nid d01171a.nid d02011a.nid \
-d02021a.nid d02022a.nid d02023a.nid d02024a.nid d02025a.nid d02026a.nid \
-d02027a.nid d02031a.nid d02032a.nid d02033a.nid d02034a.nid d02035a.nid \
-d02036a.nid d03011a.nid d03012a.nid d03013a.nid d03014a.nid d03021a.nid \
+d02021a.nid d02022a.sh d02023a.sh d02024a.sh d02025a.sh d02026a.sh \
+d02027a.sh d02031a.nid d02032a.sh d02033a.sh d02034a.sh d02035a.sh \
+d02036a.sh d03011a.nid d03012a.nid d03013a.nid d03014a.nid d03021a.nid \
 d03031a.nid d03041a.nid d03051a.nid d03061a.nid d03071a.nid d03081a.nid \
 d03082a.nid d03083a.nid d04011a.nid d05011a.nid d05021a.nid d06011a.nid \
 d07011a.nid d07012a.nid d07021a.nid d07022a.nid d08011a.nid d08012a.nid \
@@ -411,15 +413,16 @@ t04021b.nid t05031a.nid t08021a.nid t08022a.nid t08031a.nid t09051a.nid \
 t09061a.nid t09071a.nid t13021a.nid t13022a.nid t16011a.nid t17011a.nid
 
 XFAIL_TESTS = d01011b.nid d01011c.nid d01021b.nid d01151a.nid d01161a.nid \
-d02022a.nid d02023a.nid d02024a.nid d02025a.nid \
-d02026a.nid d02027a.nid d02032a.nid d02033a.nid \
-d02034a.nid d02035a.nid d02036a.nid d03011a.nid d03012a.nid \
+d02024a.sh d02025a.sh \
+d02026a.sh d02027a.sh \
+d02033a.sh d03011a.nid d03012a.nid \
 d03013a.nid d03014a.nid d03041a.nid d05011a.nid d11011b.nid \
 d12011a.nid t00001a.nid t01271a.nid t03111a.nid t03111b.nid \
 t03121a.nid t03121b.nid t03121c.nid t03131a.nid t04021b.nid \
 t08021a.nid t08022a.nid t08031a.nid t09071a.nid t16011a.nid 
 
 TEST_EXTENSIONS = .nid
+NID_AM_TESTS_ENVIRONMENT = export SOF1=windmill.sof;
 NID_LOG_COMPILER = ./testrunner.sh
 all: all-am
 
@@ -603,6 +606,83 @@ recheck: all
 	        am__force_recheck=am--force-recheck \
 	        TEST_LOGS="$$log_list"; \
 	exit $$?
+d02022a.sh.log: d02022a.sh
+	@p='d02022a.sh'; \
+	b='d02022a.sh'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+d02023a.sh.log: d02023a.sh
+	@p='d02023a.sh'; \
+	b='d02023a.sh'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+d02024a.sh.log: d02024a.sh
+	@p='d02024a.sh'; \
+	b='d02024a.sh'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+d02025a.sh.log: d02025a.sh
+	@p='d02025a.sh'; \
+	b='d02025a.sh'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+d02026a.sh.log: d02026a.sh
+	@p='d02026a.sh'; \
+	b='d02026a.sh'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+d02027a.sh.log: d02027a.sh
+	@p='d02027a.sh'; \
+	b='d02027a.sh'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+d02032a.sh.log: d02032a.sh
+	@p='d02032a.sh'; \
+	b='d02032a.sh'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+d02033a.sh.log: d02033a.sh
+	@p='d02033a.sh'; \
+	b='d02033a.sh'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+d02034a.sh.log: d02034a.sh
+	@p='d02034a.sh'; \
+	b='d02034a.sh'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+d02035a.sh.log: d02035a.sh
+	@p='d02035a.sh'; \
+	b='d02035a.sh'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+d02036a.sh.log: d02036a.sh
+	@p='d02036a.sh'; \
+	b='d02036a.sh'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
 .nid.log:
 	@p='$<'; \
 	$(am__set_b); \
@@ -768,7 +848,7 @@ uninstall-am:
 
 
 clean-local:
-	-rm -f *.out *.in12 *.out11 *.nptp *.plt *.pnh *.log *.sof1 *.sof2 *.15 *.16 *.76
+	-rm -f *.out *.in12 *.out11 *.nptp *.plt *.pnh *.log *.nid.sof1 *.nid.sof2 *.15 *.16 *.76
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
