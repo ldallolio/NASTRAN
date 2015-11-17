@@ -8,8 +8,8 @@ install:
     - sudo apt-get install gfortran autoconf automake intltool
 
 before_script:
-    - autoreconf -f
     - automake --add-missing
+    - autoreconf -f
     - ./configure && make
 
 script: 
