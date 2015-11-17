@@ -1,7 +1,7 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-AC_PREREQ([2.69])
+#AC_PREREQ([2.69])
 AC_INIT([nastran], [0.1.93], [luca.dallolio@gmail.com])
 AM_INIT_AUTOMAKE([foreign parallel-tests color-tests])
 AC_OUTPUT(Makefile mis/Makefile mds/Makefile man/Makefile nid/Makefile test/Makefile)
