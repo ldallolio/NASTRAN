@@ -5,7 +5,7 @@ language: c
 sudo: required
 
 install:
-    - sudo apt-get install gfortran automake
+    - sudo apt-get install gfortran intltool automake
 
 before_script:
     - ./configure && make
